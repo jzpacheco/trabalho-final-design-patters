@@ -1,12 +1,21 @@
 import { OrderService } from "./modules/logistics/services/OrderService";
+import { CustomerDashboardNotifier } from "./modules/notifications/observers/CustomerDashboardNotifier";
+import { SlackNotifier } from "./modules/notifications/observers/SlackNotifier";
+import { OrderSubject } from "./modules/notifications/subjects/OrderSubject";
 
-
+// Logística
+console.log("Logística");
 const orderService = new OrderService();
 
-// Pedido 1: Produto comum (standard)
 orderService.shipOrder("standard", 1.5); 
-// Saída: Frete: R$12.25 | Rastreio: BR8HXKLMNOP
-
-// Pedido 2: Produto frágil (fragile)
 orderService.shipOrder("fragile", 2.0); 
-// Saída: Frete: R$9.00 | Rastreio: TRANSPORTADORA-A-2025-ABCDE
+
+console.log("--------------------------------");
+// Notificações
+console.log("Notificações");
+const orderSubject = new OrderSubject();
+
+orderSubject.addObserver(new CustomerDashboardNotifier());
+orderSubject.addObserver(new SlackNotifier());
+
+orderSubject.shipOrder({ id: "123" });
