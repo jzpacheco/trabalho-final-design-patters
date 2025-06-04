@@ -4,6 +4,7 @@
   "description": "Trabalho Final da disciplina de Design Patters da 6 fase do curso de Eng de Software Unisatc.",
   "main": "index.js",
   "scripts": {
+    "dev": "npx ts-node -T ./src/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/jzpacheco/trabalho-final-design-patters#readme",
   "devDependencies": {
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }
